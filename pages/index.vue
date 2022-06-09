@@ -30,6 +30,21 @@
   </section>
 </template>
 
+<script>
+import Editor from '@tinymce/tinymce-vue'
+
+
+export default {
+  name: "IndexPage",
+  methods:{
+    GerarID: function (){
+      return parseInt(Math.random()*100000000);
+    }
+  }
+};
+</script>
+
+
 <style>
 .geral {
   border: 2px solid purple;
@@ -112,14 +127,3 @@
   }
 }
 </style>
-
-<script>
-export default {
-  name: "IndexPage",
-  methods:{
-    GerarID: function (){
-    return parseInt(Math.random()*100000000);
-  }
-  }
-};
-</script>
