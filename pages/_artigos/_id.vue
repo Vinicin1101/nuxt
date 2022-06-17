@@ -1,97 +1,62 @@
 <template>
   <section class="body">
-    <TopBar />
+    <TopBar></TopBar>
+    <MobileNav></MobileNav>
+    <PrimaryMenu></PrimaryMenu>
 
-    <section class="geral">
+    <section :class="`article-view`">
       <section class="imagem">
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6i29mlctWXgW7c6eZ0QAoBoPk6Z9OyrjW5WvVjU-TZTsF0FX9C3PhJdv_MH-zrN1so0k&usqp=CAU"
-        />
-        <p>Descrição</p>
+        <img src="https://picsum.photos/id/237/300/300" alt="" />
+        <description> descrição </description>
       </section>
-
       <section class="conteudo">
-        <h2 class="editor" id="titulo">Titulo</h2>
-        <editor
-          api-key="no-api-key"
-          :init="{
-              height: 500,
-              menubar: false,
-              plugins: ['a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
-              'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
-              'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
-            ],
-            toolbar:
-                'undo redo | casechange blocks | bold italic backcolor | \
-                alignleft aligncenter alignright alignjustify | \
-                bullist numlst checklist outdent indent | removeformat | a11ycheck code table help'
-            }"
-            initial-value="Welcome to TinyMCE Vue"
-        />
+        <h1>Titulo</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempor morbi
+          justo egestas vitae aliquam. Donec sed sagittis massa venenatis, nunc
+          non nunc sed. Elementum, eu enim, maecenas rhoncus adipiscing integer
+          cursus cursus. Nulla pellentesque arcu aliquet massa consequat nulla
+          at aliquam. Urna ut aliquam etiam posuere risus, tortor enim. Nec, ac
+          elit in euismod vitae, pellentesque et. Libero mauris aenean
+          ullamcorper varius eget mi eget justo. Nunc habitasse volutpat nibh
+          sed purus massa. Malesuada egestas diam, lacinia a, enim non neque
+          justo elit. Habitasse pellentesque risus, libero egestas egestas hac
+          in euismod nisi. Montes, enim faucibus neque leo ultrices nulla
+          vulputate tempus. Hac sed et scelerisque nisi, gravida. Quis at
+          pharetra semper sem etiam justo ac purus enim. Accumsan ut blandit
+          lectus ultricies ante molestie felis. Pretium sed vitae pretium mi
+          magna non lacus. Urna, dolor in fermentum bibendum. In volutpat
+          libero, id eget mattis malesuada habitasse tellus. Purus mattis
+          pharetra justo risus luctus dolor amet ut. Nec amet, netus vitae
+          tristique. Arcu dolor ut amet, nunc. Purus commodo molestie nunc,
+          consequat bibendum. Aliquam vitae sit nunc, tortor imperdiet. Cursus
+          tristique et sollicitudin et faucibus risus risus at. Sagittis purus
+          feugiat porta pharetra gravida ornare proin sagittis. Bibendum amet,
+          scelerisque malesuada pharetra. Ultricies non maecenas viverra
+          sagittis sit dictum aliquam. Nibh faucibus tellus adipiscing pharetra,
+          id morbi at quis bibendum. Aliquet venenatis quisque integer amet
+          neque tincidunt scelerisque amet, neque. Ut risus ac id massa, purus
+          quam sed. Erat fermentum suspendisse suscipit mi metus, platea
+          volutpat. Varius at aliquam tortor vitae tellus venenatis. At urna
+          lorem lorem vitae. Faucibus urna, leo venenatis a lorem viverra a.
+          Cras semper vitae cras consequat nibh eget lobortis congue lacus. Sed
+          habitant sit fames erat.
+        </p>
       </section>
     </section>
   </section>
 </template>
 
-<style scoped>
-.geral {
-  display: flex;
-  flex-direction: row;
-}
-.geral .imagem {
-  width: 40vw;
-  height: 100vh;
-
-  border: 2px solid rgb(133, 241, 255);
-  background-color: rgba(0, 0, 0, 0.192);
-
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-}
-.imagem img {
-  width: 60%;
-}
-
-.geral .conteudo {
-  width: 60vw;
-  height: 100vh;
-
-  border: 2px solid rgb(133, 255, 133);
-  background-color: rgba(0, 0, 0, 0.192);
-
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-}
-.editor {
-  border: 2px solid rgb(255, 243, 133);
-  background-color: rgba(0, 0, 0, 0.192);
-}
-
-#conteudo {
-  width: 80%;
-  height: 70%;
-}
-</style>
-
 <script>
-import Editor from '@tinymce/tinymce-vue'
-
 export default {
+  name: "artigo",
   asyncData({ params }) {
-    const id = params.id;
-    return { id };
+    return { articleID: params.id };
   },
-  components: {
-    'editor': Editor
-  }
 };
+
+import "~/static/css/article.css";
 </script>
 
+<style>
+</style>

@@ -1,0 +1,66 @@
+html,
+body {
+    background-color: #F5F5F5;
+}
+
+.article-view {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Sessão da imagem */
+.article-view section.imagem {
+    width: 40vw;
+
+    padding-top: 4em;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+section.imagem img {
+    width: 80%;
+}
+
+section.imagem description {
+    font-family: 'Spectral';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+/* Sessão do  */
+.article-view section.conteudo {
+    background-color: #fff;
+
+    width: 60vw;
+    height: fit-content;
+
+    padding: 79px;
+    padding-top: 7em;
+
+    font-family: 'Spectral';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: justify;
+    text-indent: 14px;
+}
+
+section.conteudo h1 {
+    font-family: 'Playfair Display';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 53px;
+    align-items: center;
+    text-align: center;
+    text-transform: capitalize;
+}

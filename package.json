@@ -1,6 +1,6 @@
 {
   "name": "Cronopedia",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -9,9 +9,6 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^34.1.0",
-    "@ckeditor/ckeditor5-vue": "^4.0.1",
-    "@ckeditor/ckeditor5-vue2": "^3.0.1",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
     "@tinymce/tinymce-vue": "^3.2.8",

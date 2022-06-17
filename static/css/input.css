@@ -1,0 +1,121 @@
+.primary{
+    border-radius: 6px;
+    background-color: black;
+    font-weight: bold;
+    color: white;
+    width: 6em;
+    padding: 0.5em 0.25em;
+}
+
+/* Botões */
+.menu-button, .buttons{
+    width: 3em;
+    aspect-ratio: 1;
+    background-color: white;
+    border-radius: 6px;
+    padding: 0.5em;
+    position: relative;
+    transition: 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+}
+  
+.menu-button:hover, .buttons:hover{
+    background-color: #e0e0e0;
+}
+  
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.btn-perfil{
+    border: 3px solid #e0e0e0;
+    box-sizing: border-box;
+}
+  
+  
+.menu-button::after, .menu-button::before{
+    content: "";
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: black;
+    border-radius: 100vw;
+    transform: rotate(0deg);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+  
+.menu-button::after{
+    margin: 5px 0px 0px;
+}
+  
+.clicado::after{
+    margin: -5px 0px 0px;
+    transform-origin: center;
+    transform: rotate(45deg);
+}
+  
+.clicado::before{
+    margin: 0px 0px 0px 0px;
+    transform: rotate(-45deg);
+}
+
+/* Inputs */
+
+/*Search Bar*/
+section.search{
+    width:60%;
+    height: 100%;
+}
+
+#search-bar-top{
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0.25em 0.8em;
+    color: black;
+    position: relative  ;
+    margin-top: 10px;
+    border-bottom: 2px solid #F3F3F3;
+    box-sizing: border-box;
+}
+  
+  
+  
+label.label-search{
+    position: relative;
+    width: 100%;
+}
+  
+label.label-search::after{
+    content: "";
+    display: block;
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: left;
+    transform: scaleX(0);
+    width: 100%;
+    height: 4px;
+    margin-top: -13px;
+    border-radius: 100vw;
+    background-color: black;
+}
+  
+#search-bar-top:focus + label.label-search::after{
+    transform: scaleX(1);
+    transition: transform 0.5s cubic-bezier(0.83, 0, 0.17, 1) ;
+}
+  
+/* Limpa o botãozinho de cancelar do Explorer*/
+input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
+  
+
+/* Limpa o botãozinho de cancelar do Chrome*/
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+/*Créditos - https://medium.com/@rion.mrk/how-to-remove-x-icon-from-search-input-field-or-input-type-search-db3c808405fb*/
