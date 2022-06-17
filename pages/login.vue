@@ -15,6 +15,11 @@ export default {
   name: "LoginPage",
 
   components: { TopBar, MobileNav, Card, PrimaryMenu, LoginForm },
+  head() {
+    return {
+      title: "Login",
+    };
+  },
 };
 
 import TopBar from "~/components/TopBar.vue";

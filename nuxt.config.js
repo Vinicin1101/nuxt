@@ -52,7 +52,6 @@ export default {
   pwa: {
     meta: {
       title: 'Cronopédia',
-      author: 'Equipe Cronopédia',
     },
     manifest: {
       name: "Cronopédia",

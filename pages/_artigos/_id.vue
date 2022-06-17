@@ -23,11 +23,16 @@
 <script>
 export default {
   name: "artigo",
+  head() {
+    return {
+      title: "Artigo",
+    };
+  },
   asyncData({ params }) {
     return {
       article: {
         ID: params.id,
-        // vetor com comprimento aleatório de 0 a 10
+        // vetor com comprimento aleatório de 0 a 5
         images: Array.from({ length: Math.floor(Math.random() * 5) }, () =>
           Math.floor(Math.random() * 5)
         ),

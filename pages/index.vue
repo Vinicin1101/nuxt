@@ -53,6 +53,11 @@
 <script>
 export default {
   name: "IndexPage",
+  head() {
+    return {
+      title: "Explore novos temas.",
+    };
+  },
   methods: {
     menuBTn() {
       const btn = document.querySelector("button.menu-button");
