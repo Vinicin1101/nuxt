@@ -564,3 +564,9 @@ input[type="search"]::-webkit-search-results-decoration {
     width: 100%;
   }
 }
+
+/* Seleção */
+::selection {
+  background: #000000ee;
+  color: #fff;
+}

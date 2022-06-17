@@ -4,15 +4,34 @@
     <MobileNav></MobileNav>
     <PrimaryMenu></PrimaryMenu>
 
-    <section class="article-view" :id="`${articleID}`">
-      <section class="imagem">
-        <img src="https://picsum.photos/id/237/300/300" alt="" />
-        <description> descrição </description>
-      </section>
-      <section class="conteudo">
+    <section class="article-view" :id="`${article.ID}`">
+      <section class="article-content">
         <h1>Titulo</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempor morbi
+        <p v-html="`${article.conteudo}`"></p>
+      </section>
+      <section class="article-imagens">
+        <ArticleImage
+          :key="i"
+          v-for="i in article.images"
+          :index="i"
+        ></ArticleImage>
+      </section>
+    </section>
+  </section>
+</template>
+
+<script>
+export default {
+  name: "artigo",
+  asyncData({ params }) {
+    return {
+      article: {
+        ID: params.id,
+        // vetor com comprimento aleatório de 0 a 10
+        images: Array.from({ length: Math.floor(Math.random() * 5) }, () =>
+          Math.floor(Math.random() * 5)
+        ),
+        conteudo: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempor morbi
           justo egestas vitae aliquam. Donec sed sagittis massa venenatis, nunc
           non nunc sed. Elementum, eu enim, maecenas rhoncus adipiscing integer
           cursus cursus. Nulla pellentesque arcu aliquet massa consequat nulla
@@ -27,7 +46,7 @@
           lectus ultricies ante molestie felis. Pretium sed vitae pretium mi
           magna non lacus. Urna, dolor in fermentum bibendum. In volutpat
           libero, id eget mattis malesuada habitasse tellus. Purus mattis
-          pharetra justo risus luctus dolor amet ut. Nec amet, netus vitae
+          pharetra justo risus luctus dolor <b>amet</b> ut. Nec amet, netus vitae
           tristique. Arcu dolor ut amet, nunc. Purus commodo molestie nunc,
           consequat bibendum. Aliquam vitae sit nunc, tortor imperdiet. Cursus
           tristique et sollicitudin et faucibus risus risus at. Sagittis purus
@@ -40,23 +59,13 @@
           volutpat. Varius at aliquam tortor vitae tellus venenatis. At urna
           lorem lorem vitae. Faucibus urna, leo venenatis a lorem viverra a.
           Cras semper vitae cras consequat nibh eget lobortis congue lacus. Sed
-          habitant sit fames erat.
-        </p>
-      </section>
-    </section>
-  </section>
-</template>
-
-<script>
-export default {
-  name: "artigo",
-  asyncData({ params }) {
-    return { articleID: params.id };
+          habitant sit fames erat.`,
+      },
+    };
   },
 };
-
-import "~/static/css/article.css";
 </script>
 
 <style>
+@import "~/static/css/article.css";
 </style>

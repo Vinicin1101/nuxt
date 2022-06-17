@@ -64,8 +64,6 @@ export default {
   components: { TopBar, MobileNav, Card, PrimaryMenu },
 };
 
-import "~/static/css/style.css";
-import "~/static/css/menu.css";
 import TopBar from "~/components/TopBar.vue";
 import MobileNav from "~/components/MobileNav.vue";
 import Card from "~/components/Card.vue";
