@@ -4,7 +4,7 @@
     <MobileNav></MobileNav>
     <PrimaryMenu></PrimaryMenu>
 
-    <section :class="`article-view`">
+    <section class="article-view" :id="`${articleID}`">
       <section class="imagem">
         <img src="https://picsum.photos/id/237/300/300" alt="" />
         <description> descrição </description>
