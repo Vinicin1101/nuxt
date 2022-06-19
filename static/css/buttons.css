@@ -1,0 +1,16 @@
+button.edit{
+    position: fixed;
+    background-color: white;
+    width: 3.5em;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    bottom: 10px;
+    right: 10px;
+    box-shadow: -2px 2px 5px 1px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 700px){
+    button.edit{
+        display: none;
+    }
+}

@@ -6,10 +6,81 @@
 
     <section class="article-view" :id="`${article.ID}`">
       <section class="article-content">
-        <router-link :to="`/artigos/editar/${article.ID}`">
-          <ButtonEdit></ButtonEdit>
-        </router-link>
-        <p v-html="`${article.conteudo}`"></p>
+        <editor
+          api-key="u19n8hdzwus3tpuaj01ao7t5z5jtwdvxyaouzt77iy5hn75j"
+          :init="{
+            height: 700,
+            width: 650,
+            skin: 'naked',
+            icons: 'thin',
+            plugins: [
+              'a11ychecker',
+              'advlist',
+              'advcode',
+              'advtable',
+              'autolink',
+              'checklist',
+              'export',
+              'lists',
+              'link',
+              'image',
+              'charmap',
+              'preview',
+              'anchor',
+              'searchreplace',
+              'powerpaste',
+              'fullscreen',
+              'formatpainter',
+              'media',
+              'table',
+              'help',
+              'wordcount',
+            ],
+            // Contexto (click no botão direito)
+            contextmenu: 'link image table',
+
+            // Contexto (seleção de conteudo)
+            setup: (editor) => {
+              editor.ui.registry.addContextToolbar('textselection', {
+                predicate: (node) => !editor.selection.isCollapsed(),
+                items: 'bold italic | blockquote',
+                position: 'selection',
+                scope: 'node',
+              });
+            },
+
+            // Barra de Ferramentas
+            toolbar:
+              'undo redo fontselect fontsizeselect formatting aligns \
+                list  outdent indent removeformat  a11ycheck  cancel save',
+
+            // Grupos de ferramentas
+            toolbar_groups: {
+              formatting: {
+                icon: 'format',
+                tooltip: 'Format',
+                items: 'bold italic underline | superscript subscript',
+              },
+              aligns: {
+                icon: 'align-center',
+                tooltip: 'Align',
+                items: 'alignleft aligncenter alignright alignjustify',
+              },
+              list: {
+                icon: 'unordered-list',
+                tooltip: 'List',
+                items: 'bullist numlist checklist',
+              },
+            },
+
+            // Menu
+            // menubar: 'edit insert format table tools help',
+            menubar: false,
+          }"
+          :initial-value="`${article.conteudo}`"
+          output-format="html"
+          v-on:submit="saveContent"
+        />
       </section>
       <section class="article-imagens">
         <ArticleImage
@@ -23,20 +94,22 @@
 </template>
 
 <script>
+import tinyEditor from "@tinymce/tinymce-vue";
+
 export default {
-  name: "artigo",
+  name: "EdicaoArtigo",
+  components: {
+    editor: tinyEditor,
+  },
   head() {
     return {
-      title: "Artigo",
+      title: "Editando Artigo",
     };
-  },
-  components: {
-    // "box-icon": BoxIcon,
   },
   asyncData({ params }) {
     return {
       article: {
-        ID: params.id,
+        ID: params.key,
         // vetor com comprimento aleatório de 0 a 5
         images: Array.from({ length: Math.floor(Math.random() * 5) }, () =>
           Math.floor(Math.random() * 5)
@@ -72,9 +145,6 @@ export default {
           habitant sit fames erat.</p>`,
       },
     };
-  },
-  methods: {
-    // Redirecionar para a página de edição em: /_artigos/_edicao/_id
   },
 };
 </script>

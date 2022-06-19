@@ -25,8 +25,7 @@
         <label for="search-bar" class="label-search"></label>
       </section>
       <button class="buttons btn-perfil">
-        P
-        <!-- <box-icon type='solid' name='user-circle' size="lg"></box-icon> -->
+        <i class="bx bxs-user-circle bx-sm"></i>
       </button>
     </div>
   </nav>

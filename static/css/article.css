@@ -49,6 +49,17 @@ section.article-content h1 {
     text-transform: capitalize;
 }
 
+.btn-naked {
+    color: black;
+    cursor: pointer;
+}
+
+.btn-naked#editor {
+    position: absolute;
+    right: auto;
+    top: 5em;
+}
+
 /* Responsividade */
 @media (max-width: 980px) {
     .article-view {
