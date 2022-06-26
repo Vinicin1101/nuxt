@@ -1,5 +1,6 @@
 html,
 body {
+    width: 100vw;
     background-color: #F5F5F5;
 }
 
@@ -22,7 +23,7 @@ body {
 /* Sessão do  conteudo*/
 .article-view section.article-content {
     background-color: #fff;
-
+    box-sizing: border-box;
     width: 60vw;
     height: fit-content;
 
@@ -36,6 +37,11 @@ body {
     line-height: 27px;
     text-align: justify;
     text-indent: 14px;
+}
+
+section.article-content div.tox{
+    visibility: inherit;
+    width: 100%;
 }
 
 section.article-content h1 {
@@ -68,14 +74,16 @@ section.article-content h1 {
 
     .article-view section.article-imagens {
         width: 100%;
-        padding-top: auto;
-        padding-bottom: 7em;
     }
 
+    .article-view{
+        width: 100%;
+    }
     .article-view section.article-content {
         width: 100%;
         padding: 25px;
-        padding-top: 7em;
+        padding-top: 3em;
+        padding-bottom: 6em;
     }
 }
 

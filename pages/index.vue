@@ -65,6 +65,7 @@ export default {
         ? btn.classList.remove("clicado")
         : btn.classList.add("clicado");
     },
+    
   },
   components: { TopBar, MobileNav, Card, PrimaryMenu },
 };
@@ -73,11 +74,5 @@ import TopBar from "~/components/TopBar.vue";
 import MobileNav from "~/components/MobileNav.vue";
 import Card from "~/components/Card.vue";
 import PrimaryMenu from "~/components/PrimaryMenu.vue";
-// import './css/elements.css';
-// import './css/geral.css';
-// import './css/input.css';
-// import './css/layout.css';
-// import '../node_modules/boxicons/css/boxicons.min.css'
-// import '../node_modules/boxicons/dist/boxicons.js'
 </script>
 

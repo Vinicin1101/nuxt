@@ -29,8 +29,13 @@
 }
   
 .btn-perfil{
-    border: 3px solid #e0e0e0;
+    border: none;
     box-sizing: border-box;
+    color: black;
+}
+
+.btn-perfil *{
+    color: currentColor;
 }
   
   

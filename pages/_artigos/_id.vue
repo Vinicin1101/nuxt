@@ -1,7 +1,10 @@
 <template>
   <section class="body">
     <TopBar></TopBar>
-    <MobileNav></MobileNav>
+    <router-link :to="`/artigos/editar/${article.ID}`">
+          <MobileEdit></MobileEdit>
+    </router-link>
+   
     <PrimaryMenu></PrimaryMenu>
 
     <section class="article-view" :id="`${article.ID}`">
@@ -23,6 +26,8 @@
 </template>
 
 <script>
+import MobileEdit from '~/components/MobileEdit.vue';
+import MobileNav from '~/components/MobileNav.vue';
 export default {
   name: "artigo",
   head() {
@@ -31,8 +36,9 @@ export default {
     };
   },
   components: {
-    // "box-icon": BoxIcon,
-  },
+    MobileEdit,
+    MobileNav
+},
   asyncData({ params }) {
     return {
       article: {

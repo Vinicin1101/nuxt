@@ -183,10 +183,6 @@ button {
   justify-content: center;
 }
 
-.btn-perfil {
-  border: 3px solid #e0e0e0;
-  box-sizing: border-box;
-}
 
 
 .menu-button::after,
@@ -443,6 +439,7 @@ input[type="search"]::-webkit-search-results-decoration {
   bottom: 0px;
   z-index: 100;
   padding: 0.5em;
+  gap: 0.8em;
 }
 
 .mobile-button {
@@ -451,9 +448,19 @@ input[type="search"]::-webkit-search-results-decoration {
   width: 3.5em;
   aspect-ratio: 1;
   border-radius: 50%;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
   padding: 0.5em;
+}
 
+.mobile-button *{
+  color: currentColor;
+}
+
+.create{
+  display: block;
 }
 
 .create::after,
@@ -548,6 +555,10 @@ input[type="search"]::-webkit-search-results-decoration {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .perfil{
+    justify-content: end;
   }
 }
 

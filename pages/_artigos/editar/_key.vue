@@ -1,7 +1,7 @@
 <template>
   <section class="body">
     <TopBar></TopBar>
-    <MobileNav></MobileNav>
+    <MobileChange></MobileChange>
     <PrimaryMenu></PrimaryMenu>
 
     <section class="article-view" :id="`${article.ID}`">
@@ -10,7 +10,6 @@
           api-key="u19n8hdzwus3tpuaj01ao7t5z5jtwdvxyaouzt77iy5hn75j"
           :init="{
             height: 700,
-            width: 650,
             skin: 'naked',
             icons: 'thin',
             plugins: [
@@ -76,10 +75,22 @@
             // Menu
             // menubar: 'edit insert format table tools help',
             menubar: false,
+
+            // Mobile
+            mobile: {
+              // Contexto (seleção de conteudo)
+              setup: (editor) => {
+                editor.ui.registry.addContextToolbar('textselection', {
+                  predicate: (node) => !editor.selection.isCollapsed(),
+                  items: 'bold italic | blockquote',
+                  position: 'selection',
+                  scope: 'node',
+                });
+              },
+            },
           }"
           :initial-value="`${article.conteudo}`"
           output-format="html"
-          v-on:submit="saveContent"
         />
       </section>
       <section class="article-imagens">
@@ -95,11 +106,13 @@
 
 <script>
 import tinyEditor from "@tinymce/tinymce-vue";
+import MobileChange from "~/components/MobileChange.vue";
 
 export default {
   name: "EdicaoArtigo",
   components: {
     editor: tinyEditor,
+    MobileChange,
   },
   head() {
     return {
