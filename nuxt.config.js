@@ -58,7 +58,7 @@ export default {
     },
     manifest: {
       name: "Cronopédia",
-      short_name: "Cronos",
+      short_name: "Cronopédia",
       author: "Equipe Cronopédia",
       description: "Uma forma mais uma fácil de aprender.",
       lang: "pt-BR",
