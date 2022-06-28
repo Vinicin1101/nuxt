@@ -1,4 +1,4 @@
-# nuxt
+# Cronopédia 1.0.4
 Implementação do projeto usando Nuxt.Js
 
 # Integrantes
