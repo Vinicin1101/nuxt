@@ -16,10 +16,18 @@ async function connectDB() {
 
     const prodCollection = db.collection("articles");
 
+    // Rota [/mostrar?termo=alguma-coisa]
     app.get('/mostrar', async (req, res, next) => {
-        const result = await prodCollection.find({ resume: { $regex: new RegExp(" ", "gi") } }).toArray();
+        const termo = req.query.termo;
+        const result = await prodCollection.find({ resume: { $regex: new RegExp(termo, "gi") } }).toArray();
 
-        res.status(200).send("Encontrei " + result.length + " resultados no banco de dados" + "<ol><li>"+ result[0]["title"] +"</li><li>"+ result[1]["title"] +"</li></ol>");
+        if (result.length > 0 && termo.trim != "") {
+            let lista = [];
+            result.forEach(element => {
+                lista += "<li>" + element["title"] + "</li>"
+            });
+            res.status(200).send("<h3>Encontrei " + result.length + " resultados no banco de dados </h3>" + " <br> <h2>Artigos encontrados</h2> <ol>"+ lista +"</ol>");
+        }
     });
 }
 
