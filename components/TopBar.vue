@@ -21,8 +21,11 @@
           name="search-bar"
           id="search-bar-top"
           placeholder="Pesquise algo..."
+          v-on:keyup.enter="search()"
         />
         <label for="search-bar" class="label-search"></label>
+
+        <section class="search-results-dropdown"></section>
       </section>
       <button class="buttons btn-perfil">
         <i class="bx bxs-user-circle bx-sm"></i>
@@ -32,7 +35,14 @@
 </template>
 
 <script>
+import search_API from "@/server-middleware/search.js";
+
 export default {
+  data() {
+    return {
+      results: false,
+    };
+  },
   methods: {
     menuBTn() {
       const btn = document.querySelector("button.menu-button");
@@ -47,6 +57,50 @@ export default {
       visi == "false"
         ? primaryNav.setAttribute("data-visible", "true")
         : primaryNav.setAttribute("data-visible", "false");
+    },
+
+    search() {
+      const search = document.querySelector(".search");
+      const result_dropdown = document.querySelector(
+        ".search-results-dropdown"
+      );
+      const q = search.querySelector("input").value;
+
+      // ajax para pesquisa
+      search_API.get(q).then((response) => {
+        if (response.length > 0) {
+          let lista = [];
+          response.forEach((element) => {
+            lista += `
+            <li>
+              <a href="/artigos/${element["_id"]}">
+                <span>${element.title}</span>
+              </a>
+            </li>`;
+          });
+
+          result_dropdown.innerHTML =
+            "<p>Exibindo resultados para: " +
+            q +
+            '</p> <ul class"primary-menu">' +
+            lista +
+            "</ul>";
+        } else {
+          result_dropdown.innerHTML = "<p>Nenhum resultado encontrado</p>";
+        }
+
+        this.searchView();
+      });
+    },
+
+    searchView() {
+      const result_dropdown = document.querySelector(
+        ".search-results-dropdown"
+      );
+
+      result_dropdown.classList.contains("visible")
+        ? result_dropdown.classList.remove("visible")
+        : result_dropdown.classList.add("visible");
     },
   },
 };

@@ -1,4 +1,4 @@
-.primary{
+.primary {
     border-radius: 6px;
     background-color: black;
     font-weight: bold;
@@ -8,7 +8,8 @@
 }
 
 /* Botões */
-.menu-button, .buttons{
+.menu-button,
+.buttons {
     width: 3em;
     aspect-ratio: 1;
     background-color: white;
@@ -17,29 +18,31 @@
     position: relative;
     transition: 0.3s cubic-bezier(0.33, 1, 0.68, 1);
 }
-  
-.menu-button:hover, .buttons:hover{
+
+.menu-button:hover,
+.buttons:hover {
     background-color: #e0e0e0;
 }
-  
-.buttons{
+
+.buttons {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-  
-.btn-perfil{
+
+.btn-perfil {
     border: none;
     box-sizing: border-box;
     color: black;
 }
 
-.btn-perfil *{
+.btn-perfil * {
     color: currentColor;
 }
-  
-  
-.menu-button::after, .menu-button::before{
+
+
+.menu-button::after,
+.menu-button::before {
     content: "";
     position: relative;
     display: block;
@@ -50,18 +53,18 @@
     transform: rotate(0deg);
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-  
-.menu-button::after{
+
+.menu-button::after {
     margin: 5px 0px 0px;
 }
-  
-.clicado::after{
+
+.clicado::after {
     margin: -5px 0px 0px;
     transform-origin: center;
     transform: rotate(45deg);
 }
-  
-.clicado::before{
+
+.clicado::before {
     margin: 0px 0px 0px 0px;
     transform: rotate(-45deg);
 }
@@ -69,32 +72,127 @@
 /* Inputs */
 
 /*Search Bar*/
-section.search{
-    width:60%;
+section.search {
+    width: 60%;
     height: 100%;
 }
 
-#search-bar-top{
+#search-bar-top {
     -webkit-appearance: none;
     border: none;
     outline: none;
     width: 100%;
     padding: 0.25em 0.8em;
     color: black;
-    position: relative  ;
+    position: relative;
     margin-top: 10px;
     border-bottom: 2px solid #F3F3F3;
     box-sizing: border-box;
 }
-  
-  
-  
-label.label-search{
+
+.search-results-dropdown {
+    display: none;
+    position: relative;
+
+    width: 200%;
+    top: -1.2em;
+    left: -50%;
+
+    background-color: white;
+
+    border: solid 2px #F3F3F3;
+}
+
+/* dropdown */
+/* Menu */
+.primary-menu {
+    --padding: 0.7em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 var(--padding) 0 var(--padding);
+    gap: 1.5em;
+}
+
+.primary-menu li {
+    display: inline;
+}
+
+
+.primary-menu a {
+    text-decoration: none;
+
+    position: relative;
+    color: black;
+}
+
+.primary-menu a::after {
+    content: '';
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-radius: 100vw;
+    background-color: black;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+    transition-delay: 0.15s;
+
+}
+
+.primary-menu a:hover::after {
+    transform: scaleX(1);
+    transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.primary-menu {
+
+    position: fixed;
+    justify-content: center;
+    flex-direction: column;
+    inset: 0 50% 0 0;
+    background-color: white;
+
+    border-radius: 10px;
+    box-shadow: -5px 0 15px 0px rgba(0, 0, 0, 0.178);
+    transform: translateY(-100%) translateX(5%);
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.7s cubic-bezier(0.87, 0, 0.13, 1);
+    z-index: 95;
+    height: 17em;
+    width: 10em;
+}
+
+.primary-menu[data-visible="true"] {
+    transform: translateY(25%) translateX(5%);
+    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 920px) {
+    .primary-menu[data-visible="true"] {
+        transform: translateY(30%) translateX(5%);
+    }
+}
+
+@media (max-width: 300px) {
+    .primary-menu[data-visible="true"] {
+        transform: translateY(35%) translateX(5%);
+    }
+}
+
+/* dropdown end */
+
+.visible {
+    display: block;
+}
+
+label.label-search {
     position: relative;
     width: 100%;
 }
-  
-label.label-search::after{
+
+label.label-search::after {
     content: "";
     display: block;
     position: relative;
@@ -107,20 +205,32 @@ label.label-search::after{
     border-radius: 100vw;
     background-color: black;
 }
-  
-#search-bar-top:focus + label.label-search::after{
+
+#search-bar-top:focus+label.label-search::after {
     transform: scaleX(1);
-    transition: transform 0.5s cubic-bezier(0.83, 0, 0.17, 1) ;
+    transition: transform 0.5s cubic-bezier(0.83, 0, 0.17, 1);
 }
-  
+
 /* Limpa o botãozinho de cancelar do Explorer*/
-input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
-input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
-  
+input[type=search]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+input[type=search]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
 
 /* Limpa o botãozinho de cancelar do Chrome*/
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration { display: none; }
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+
 /*Créditos - https://medium.com/@rion.mrk/how-to-remove-x-icon-from-search-input-field-or-input-type-search-db3c808405fb*/
