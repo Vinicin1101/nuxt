@@ -1,13 +1,10 @@
 <template>
   <nav class="top-bar">
     <div class="menu">
-      <button
-        class="menu-button"
-        v-on:click="
-          menuView();
-          menuBTn();
-        "
-      ></button>
+      <button class="menu-button" v-on:click="
+  menuView();
+menuBTn();
+      "></button>
     </div>
     <div class="logo">
       <router-link to="/" style="text-decoration: none; color: inherit">
@@ -16,13 +13,8 @@
     </div>
     <div class="perfil">
       <section class="search">
-        <input
-          type="search"
-          name="search-bar"
-          id="search-bar-top"
-          placeholder="Pesquise algo..."
-          v-on:keyup.enter="search()"
-        />
+        <input type="search" name="search-bar" id="search-bar-top" placeholder="Pesquise algo..."
+          v-on:keyup.enter="search()" />
         <label for="search-bar" class="label-search"></label>
 
         <section class="search-results-dropdown"></section>
@@ -69,22 +61,11 @@ export default {
       // ajax para pesquisa
       search_API.get(q).then((response) => {
         if (response.length > 0) {
-          let lista = [];
           response.forEach((element) => {
-            lista += `
-            <li>
-              <a href="/artigos/${element["_id"]}">
-                <span>${element.title}</span>
-              </a>
-            </li>`;
+            criarLink(element, element["_id"]);
           });
 
-          result_dropdown.innerHTML =
-            "<p>Exibindo resultados para: " +
-            q +
-            '</p> <ul class"primary-menu">' +
-            lista +
-            "</ul>";
+          mostrarResultado();
         } else {
           result_dropdown.innerHTML = "<p>Nenhum resultado encontrado</p>";
         }
@@ -93,15 +74,21 @@ export default {
       });
     },
 
-    searchView() {
-      const result_dropdown = document.querySelector(
-        ".search-results-dropdown"
-      );
-
-      result_dropdown.classList.contains("visible")
-        ? result_dropdown.classList.remove("visible")
-        : result_dropdown.classList.add("visible");
+    criarLink(conteudo, linkTo) {
+      var link = document.createElement('a');
+      link.innerText = `<span class="link_title"> ${conteudo.title} </span>`;
+      link.setAttribute('href', linkTo)
+      return link
     },
+
+    mostrarResultado(speed) {
+      const drop = document.querySelector('section.search-results-dropdown');
+
+      var i = 0;
+      const inserirLink = setInterval(function () {
+        i <= lista.length - 1 ? (drop.append(lista[i]), i++) : clearInterval(inserirLink);
+      }, speed != null ? speed : 75);
+    }
   },
 };
 </script>
