@@ -91,8 +91,10 @@ section.search {
 }
 
 .search-results-dropdown {
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
     gap: 0.4em;
     border-radius: 0.5em;
     width: 100%;
@@ -100,7 +102,7 @@ section.search {
 
 }
 
-.search-results-dropdown a{
+.search-results-dropdown a {
     background-color: white;
     transform: scale(1);
     border-radius: 0.5em;
@@ -111,17 +113,22 @@ section.search {
     transition: 0.35s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-.search-results-dropdown a:hover{
-
+.search-results-dropdown a:hover {
     background-color: var(--grey);
 }
 
-@keyframes appearLink{
-    from{
+span.link_title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000;
+}
+
+@keyframes appearLink {
+    from {
         transform: scale(0);
     }
 
-    to{
+    to {
         transform: scale(1);
     }
 }

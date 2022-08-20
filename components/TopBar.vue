@@ -1,10 +1,13 @@
 <template>
   <nav class="top-bar">
     <div class="menu">
-      <button class="menu-button" v-on:click="
-  menuView();
-menuBTn();
-      "></button>
+      <button
+        class="menu-button"
+        v-on:click="
+          menuView();
+          menuBTn();
+        "
+      ></button>
     </div>
     <div class="logo">
       <router-link to="/" style="text-decoration: none; color: inherit">
@@ -13,8 +16,13 @@ menuBTn();
     </div>
     <div class="perfil">
       <section class="search">
-        <input type="search" name="search-bar" id="search-bar-top" placeholder="Pesquise algo..."
-          v-on:keyup.enter="search()" />
+        <input
+          type="search"
+          name="search-bar"
+          id="search-bar-top"
+          placeholder="Pesquise algo..."
+          v-on:keyup.enter="search()"
+        />
         <label for="search-bar" class="label-search"></label>
 
         <section class="search-results-dropdown"></section>
@@ -51,6 +59,32 @@ export default {
         : primaryNav.setAttribute("data-visible", "false");
     },
 
+    criarLink(conteudo, linkTo) {
+      var link = document.createElement("a");
+      var span = document.createElement("span");
+      span.setAttribute("class", "link-title");
+      span.innerHTML = conteudo.title;
+      link.appendChild(span);
+      link.setAttribute("href", linkTo);
+      return link;
+    },
+
+    mostrarResultado(speed, lista) {
+      const drop = document.querySelector("section.search-results-dropdown");
+      drop.innerHTML = "";
+      drop.classList.add("visible");
+
+      var i = 0;
+      const inserirLink = setInterval(
+        function () {
+          i <= lista.length - 1
+            ? (drop.append(lista[i]), i++)
+            : clearInterval(inserirLink);
+        },
+        speed != null ? speed : 75
+      );
+    },
+
     search() {
       const search = document.querySelector(".search");
       const result_dropdown = document.querySelector(
@@ -61,34 +95,17 @@ export default {
       // ajax para pesquisa
       search_API.get(q).then((response) => {
         if (response.length > 0) {
+          let lista = [];
           response.forEach((element) => {
-            criarLink(element, element["_id"]);
+            lista.push(this.criarLink(element, element["_id"]));
           });
 
-          mostrarResultado();
+          this.mostrarResultado(null, lista);
         } else {
           result_dropdown.innerHTML = "<p>Nenhum resultado encontrado</p>";
         }
-
-        this.searchView();
       });
     },
-
-    criarLink(conteudo, linkTo) {
-      var link = document.createElement('a');
-      link.innerText = `<span class="link_title"> ${conteudo.title} </span>`;
-      link.setAttribute('href', linkTo)
-      return link
-    },
-
-    mostrarResultado(speed) {
-      const drop = document.querySelector('section.search-results-dropdown');
-
-      var i = 0;
-      const inserirLink = setInterval(function () {
-        i <= lista.length - 1 ? (drop.append(lista[i]), i++) : clearInterval(inserirLink);
-      }, speed != null ? speed : 75);
-    }
   },
 };
 </script>

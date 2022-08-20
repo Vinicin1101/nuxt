@@ -10,6 +10,7 @@ require("dotenv").config();
 const DB_USER = process.env.DB_USER;
 const DB_PASS = process.env.DB_PASS;
 const DB_NAME = process.env.DB_NAME;
+const DB_COLLECTION = process.env.DB_COLLECTION;
 
 // MongoDB
 const { MongoClient, ObjectId } = require("mongodb");
@@ -18,8 +19,9 @@ const DB_URL = `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.dff1c.mongodb.net/?
 // mongodb connection
 async function connectDB() {
     const client = await MongoClient.connect(DB_URL);
-    console.log(client.getLogger());
+    console.log(DB_URL);
     const db = client.db(DB_NAME);
+    console.log(db.stats());
 
     const prodCollection = db.collection(DB_COLLECTION);
 
