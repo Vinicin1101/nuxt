@@ -25,7 +25,8 @@
         />
         <label for="search-bar" class="label-search"></label>
 
-        <section class="search-results-dropdown"></section>
+        <!-- remover a classe visible quando perfer o foco -->
+        <section class="search-results-dropdown" @blur="esconder()"></section>
       </section>
       <button class="buttons btn-perfil">
         <i class="bx bxs-user-circle bx-sm"></i>
@@ -59,13 +60,19 @@ export default {
         : primaryNav.setAttribute("data-visible", "false");
     },
 
-    criarLink(conteudo, linkTo) {
-      var link = document.createElement("a");
-      var span = document.createElement("span");
-      span.setAttribute("class", "link-title");
-      span.innerHTML = conteudo.title;
-      link.appendChild(span);
-      link.setAttribute("href", linkTo);
+    criarLink(conteudo) {
+      const link = document.createElement("div");
+      link.setAttribute("class", "article-link");
+
+      link.innerHTML = `
+      <a href="${conteudo["_id"]}"><p class="link-title">${
+        conteudo.title
+      }</p><p class="link-description">${conteudo.resume.substring(
+        0,
+        90
+      )}...</p> </a>
+      `;
+
       return link;
     },
 
@@ -97,7 +104,7 @@ export default {
         if (response.length > 0) {
           let lista = [];
           response.forEach((element) => {
-            lista.push(this.criarLink(element, element["_id"]));
+            lista.push(this.criarLink(element));
           });
 
           this.mostrarResultado(null, lista);
@@ -106,16 +113,24 @@ export default {
         }
       });
     },
+
+    esconder() {
+      const drop = document.querySelector("section.search-results-dropdown");
+      drop.classList.remove("visible");
+    },
   },
 };
 </script>
 
 <style scoped>
-@import "~/static/css/input.css";
 @import "~/static/css/form.css";
 @import "~/static/css/geral.css";
 @import "~/static/css/layout.css";
 @import "~/static/css/menu.css";
 @import "~/static/css/elements.css";
-@import "~/static/css/style.css";
+</style>
+
+<style>
+@import "~/static/css/top.css";
+@import "~/static/css/input.css";
 </style>
