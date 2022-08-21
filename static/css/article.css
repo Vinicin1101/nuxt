@@ -1,6 +1,6 @@
 html,
 body {
-    width: 100vw;
+    width: 100%;
     background-color: #F5F5F5;
 }
 
@@ -39,7 +39,7 @@ body {
     text-indent: 14px;
 }
 
-section.article-content div.tox{
+section.article-content div.tox {
     visibility: inherit;
     width: 100%;
 }
@@ -76,9 +76,10 @@ section.article-content h1 {
         width: 100%;
     }
 
-    .article-view{
+    .article-view {
         width: 100%;
     }
+
     .article-view section.article-content {
         width: 100%;
         padding: 25px;

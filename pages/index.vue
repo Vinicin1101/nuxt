@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Spectral:ital,wght@0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
   -->
 
-  <section class="body">
+  <section class="body" @click="esconder()">
     <TopBar></TopBar>
     <MobileNav></MobileNav>
     <PrimaryMenu></PrimaryMenu>
@@ -65,7 +65,17 @@ export default {
         ? btn.classList.remove("clicado")
         : btn.classList.add("clicado");
     },
-    
+
+    // esconder o menu quando clicar fora dele
+    esconder() {
+      const primaryNav = document.querySelector(
+        "section.search-results-dropdown"
+      );
+      var visi = primaryNav.getAttribute("data-visible");
+      visi == "true"
+        ? primaryNav.setAttribute("data-visible", "false")
+        : primaryNav.setAttribute("data-visible", "true");
+    },
   },
   components: { TopBar, MobileNav, Card, PrimaryMenu },
 };

@@ -22,11 +22,13 @@
           id="search-bar-top"
           placeholder="Pesquise algo..."
           v-on:keyup.enter="search()"
+          @focus="searchView()"
+          @blur="searchView()"
         />
         <label for="search-bar" class="label-search"></label>
 
         <!-- remover a classe visible quando perfer o foco -->
-        <section class="search-results-dropdown" @blur="esconder()"></section>
+        <section class="search-results-dropdown" data-visible="false"></section>
       </section>
       <button class="buttons btn-perfil">
         <i class="bx bxs-user-circle bx-sm"></i>
@@ -60,6 +62,16 @@ export default {
         : primaryNav.setAttribute("data-visible", "false");
     },
 
+    searchView() {
+      const drop = document.querySelector("section.search-results-dropdown");
+      drop.classList.contains("visible")
+        ? setTimeout(() => {
+            // gambiarra pra poder clicar no link antes de sumir (aguarda 1s antes de ocultar os resultados)
+            drop.classList.remove("visible");
+          }, 1000)
+        : drop.classList.add("visible");
+    },
+
     criarLink(conteudo) {
       const link = document.createElement("div");
       link.setAttribute("class", "article-link");
@@ -69,7 +81,7 @@ export default {
         conteudo.title
       }</p><p class="link-description">${conteudo.resume.substring(
         0,
-        90
+        60
       )}...</p> </a>
       `;
 
@@ -97,6 +109,7 @@ export default {
       const result_dropdown = document.querySelector(
         ".search-results-dropdown"
       );
+      result_dropdown.innerHTML = "";
       const q = search.querySelector("input").value;
 
       // ajax para pesquisa
@@ -109,14 +122,9 @@ export default {
 
           this.mostrarResultado(null, lista);
         } else {
-          result_dropdown.innerHTML = "<p>Nenhum resultado encontrado</p>";
+          result_dropdown.innerHTML = `<div class="article-link"><a id="msg_404" href="/artigo/editar/#">Nenhum resultado encontrado</a></div>`;
         }
       });
-    },
-
-    esconder() {
-      const drop = document.querySelector("section.search-results-dropdown");
-      drop.classList.remove("visible");
     },
   },
 };
